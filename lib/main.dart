@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sebbo/screens/home_screen.dart';
+import 'package:sebbo/screens/product_view_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: ProductView(),
     );
   }
 }
