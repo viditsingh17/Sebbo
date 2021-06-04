@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "895864470047",
+    "project_id": "sebbo-c4496",
+    "storage_bucket": "sebbo-c4496.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895864470047:android:277c13dfe404aea8e5f32a",
+        "android_client_info": {
+          "package_name": "com.example.sebbo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895864470047-5ccp85jfivohhipn5r3udes1mq8j13pe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sebbo",
+            "certificate_hash": "e5ccd16a979cd957f8082a47b7773854bd19c0d0"
+          }
+        },
+        {
+          "client_id": "895864470047-9bq68ulmc7m94p1mppb8hmasb4gg6otu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCvc3s_IriQw7LpaNOCbznwZeRzccTrPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895864470047-9bq68ulmc7m94p1mppb8hmasb4gg6otu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
