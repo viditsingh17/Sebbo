@@ -90,12 +90,12 @@ Widget myTextField({onChanged, label, keyboardType}) {
 //Customized Form Field
 Widget myFromField(
     {label,
-      hint,
-      validator,
-      onSaved,
-      onChanged,
-      keyBoardType: TextInputType.text,
-      controller}) {
+    hint,
+    validator,
+    onSaved,
+    onChanged,
+    keyBoardType: TextInputType.text,
+    controller}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8),
     child: TextFormField(
@@ -112,6 +112,28 @@ Widget myFromField(
   );
 }
 
+//custom box shadow
+final customboxshadow = [
+  BoxShadow(
+    color: Colors.grey.withOpacity(0.5), //color of shadow
+    spreadRadius: 5, //spread radius
+    blurRadius: 7, // blur radius
+    offset: Offset(0, 2), // changes position of shadow
+    //first paramerter of offset is left-right
+    //second parameter is top to down
+  ),
+  //you can set more BoxShadow() here
+];
+
+//themed Gradient
+final themeGradient = LinearGradient(
+  colors: [
+    Colors.blue[400],
+    Colors.blueAccent,
+  ],
+  begin: Alignment.bottomLeft,
+  end: Alignment.topRight,
+);
 //Customized raisedButton
 Widget myRaisedButton({onPressed, label}) {
   return Container(

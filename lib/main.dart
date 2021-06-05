@@ -23,6 +23,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:sebbo/constants.dart';
 import 'package:sebbo/services/auth.dart';
 import 'package:sebbo/services/auth_widget.dart';
 import 'package:sebbo/services/auth_widget_builder.dart';
@@ -36,9 +37,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light));
+      statusBarIconBrightness: Brightness.light,
+    ),
+  );
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(
