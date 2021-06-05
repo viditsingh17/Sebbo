@@ -30,35 +30,42 @@ import 'package:sebbo/widgets/splashScreen.dart';
 import 'helper/customRouteTransition.dart';
 import 'login/loginScreen.dart';
 
-
-
-var feed=[];
-var a={};
-void main()async {
-
+var feed = [];
+var a = {};
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.light));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider<Data>(create: (_)=>Data(),),
-      Provider<AuthBase>(create: (context)=>Auth(),),
-    ],
-    child: MyApp(),),);
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Data>(
+          create: (_) => Data(),
+        ),
+        Provider<AuthBase>(
+          create: (context) => Auth(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
-String isLogin=' '; // ' ' it is necessary so that error will not occur because of null value
+String isLogin =
+    ' '; // ' ' it is necessary so that error will not occur because of null value
 bool splashScreen = true;
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   /*final postRef = FirebaseFirestore.instance.collection('post');
   getPost() async {
     QuerySnapshot snapshot = await postRef.get();
@@ -75,12 +82,11 @@ class _MyAppState extends State<MyApp> {
   }
 */
 
-
   @override
   Widget build(BuildContext context) {
     precacheImage(
         AssetImage(
-          "assets/images/logo_blue.png",
+          "assets/images/logo.png",
         ),
         context);
     precacheImage(
@@ -93,10 +99,10 @@ class _MyAppState extends State<MyApp> {
           "assets/images/bg_diary.png",
         ),
         context);
-    return AuthWidgetBuilder(builder: (context, userSnapshot){
+    return AuthWidgetBuilder(builder: (context, userSnapshot) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Rapport',
+        title: 'Sebbo',
         theme: ThemeData(
           primaryColor: Color(0xFFE3F2FD),
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -122,7 +128,11 @@ class _MyAppState extends State<MyApp> {
        */
         routes: {
           //the route name / stands for home / first route in the app.
-          '/': (ctx) => splashScreen ?CustomSplashScreen():AuthWidget(userSnapshot: userSnapshot,),
+          '/': (ctx) => splashScreen
+              ? CustomSplashScreen()
+              : AuthWidget(
+                  userSnapshot: userSnapshot,
+                ),
           LoginScreen.loginRoute: (ctx) => LoginScreen()
         },
       );
@@ -130,14 +140,10 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
-class Data extends ChangeNotifier{
+class Data extends ChangeNotifier {
   List<String> myRealData = [];
-  void changeMyData (List<String> value){
+  void changeMyData(List<String> value) {
     myRealData = value;
     notifyListeners();
   }
 }
-
-
-
