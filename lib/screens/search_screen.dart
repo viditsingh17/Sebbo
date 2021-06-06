@@ -3,6 +3,7 @@ import 'package:sebbo/models/product.dart';
 import 'package:sebbo/widgets/product_item.dart';
 
 class SearchScreen extends StatefulWidget {
+  static const String searchRoute = '/home/search';
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -109,67 +110,92 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sebbo Home'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: CircleAvatar(
-              radius: 18,
-              child: Text('U'), //User's profile picture will show up here
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text('Search'),
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.only(right: 15.0),
+      //       child: CircleAvatar(
+      //         radius: 18,
+      //         child: Text('U'), //User's profile picture will show up here
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: ListView(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
         children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(Icons.arrow_back),
+              ),
+              Text(
+                'Search',
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+              )
+            ],
+          ),
           Container(
             margin: const EdgeInsets.all(10),
-            padding: const EdgeInsets.all(20),
+            // padding: const EdgeInsets.all(20),
             width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Colors.black54,
-              ),
-            ),
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Search & Filter',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black54),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  autocorrect: true,
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    alignLabelWithHint: true,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 7),
-                    // errorText: 'Search key invalid',
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    labelText: 'Search term',
-                    filled: true,
-                    fillColor: Colors.grey[300],
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                        size: 24,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          autocorrect: true,
+                          style: TextStyle(
+                            fontSize: 16,
+                            height: 0.5,
+                          ),
+                          scrollPadding: const EdgeInsets.all(0),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            alignLabelWithHint: true,
+
+                            contentPadding: const EdgeInsets.all(0),
+
+                            // errorText: 'Search key invalid',
+
+                            labelText: 'Search with book name, author name...',
+                            isDense: true,
+                            filled: false,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 CheckboxListTile(

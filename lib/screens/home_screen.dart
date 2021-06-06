@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sebbo/configurations.dart';
 import 'package:sebbo/constants.dart';
 import 'package:sebbo/models/product.dart';
+import 'package:sebbo/screens/profile_screen.dart';
+import 'package:sebbo/screens/search_screen.dart';
 import 'package:sebbo/widgets/product_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         imageUrl: 'https://picsum.photos/200',
         listedOn: DateTime.now(),
         owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
+        title: 'First book of mankind having all the knowledge required'),
     Product(
         id: 'a1',
         description: 'bal lla flaslfla f',
@@ -112,8 +114,28 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ProfileScreen.profileRoute);
+              },
+              child: CircleAvatar(
+                radius: 18,
+                backgroundImage: NetworkImage(
+                  'https://picsum.photos/200',
+                ), //User's profile picture will show up here
+              ),
+            ),
+          ),
+        ],
         bottom: PreferredSize(
-          child: Container(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, SearchScreen.searchRoute);
+            },
+            child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
               decoration: BoxDecoration(
@@ -125,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Icon(
                     Icons.search,
-                    color: Colors.black54,
+                    color: Colors.grey,
                     size: 24,
                   ),
                   SizedBox(
@@ -139,7 +161,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ],
-              )),
+              ),
+            ),
+          ),
           preferredSize: Size.fromHeight(60),
         ),
         flexibleSpace: Container(

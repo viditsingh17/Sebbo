@@ -6,7 +6,6 @@ import 'package:sebbo/screens/home_screen.dart';
 import 'package:sebbo/services/auth_widget.dart';
 import '../main.dart';
 
-
 List<String> myData = [];
 
 class CustomSplashScreen extends StatefulWidget {
@@ -32,9 +31,8 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> {
       String number = await SharedPrefFunction().getNumberPreference();
       data = await SharedPrefFunction().getUserData(number);
       print(data.toString() + 'Hello');
-
     }
-    if(this.mounted){
+    if (this.mounted) {
       setState(() {
         isLogin = res;
         if (data != null) {
@@ -54,21 +52,24 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> {
   Widget build(BuildContext context) {
 //    print('Problem is here');
     return SplashScreen.navigate(
-      name: 'assets/splash.flr',
+      height: MediaQuery.of(context).size.height * 0.25,
+      loopAnimation: 'Alarm',
+      name: 'assets/sebbo_splash.flr',
       next: (context) {
         splashScreen = false;
         print(isLogin.toString());
-        if(isLogin == null){
+        if (isLogin == null) {
           return LoginScreen();
+        } else if (isLogin == 'true') {
+          return HomeScreen();
+        } else {
+          return AuthWidget(
+            userSnapshot: widget.snapshot,
+          );
         }
-        else if(isLogin == 'true'){
-            return HomeScreen();
-        }
-        else{
-          return AuthWidget(userSnapshot: widget.snapshot,);}
       },
-      startAnimation: 'intro',
-      until: () => Future.delayed(Duration(seconds: 2)),
+      startAnimation: 'Alarm',
+      until: () => Future.delayed(Duration(seconds: 4)),
       backgroundColor: Colors.white,
     );
   }

@@ -24,6 +24,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sebbo/constants.dart';
+import 'package:sebbo/screens/profile_screen.dart';
+import 'package:sebbo/screens/search_screen.dart';
 import 'package:sebbo/services/auth.dart';
 import 'package:sebbo/services/auth_widget.dart';
 import 'package:sebbo/services/auth_widget_builder.dart';
@@ -137,7 +139,9 @@ class _MyAppState extends State<MyApp> {
               : AuthWidget(
                   userSnapshot: userSnapshot,
                 ),
-          LoginScreen.loginRoute: (ctx) => LoginScreen()
+          LoginScreen.loginRoute: (ctx) => LoginScreen(),
+          SearchScreen.searchRoute: (ctx) => SearchScreen(),
+          ProfileScreen.profileRoute: (ctx) => ProfileScreen(),
         },
       );
     });

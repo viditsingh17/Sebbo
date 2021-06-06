@@ -18,7 +18,7 @@ class _ProductItemState extends State<ProductItem> {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black54),
+        border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -36,6 +36,8 @@ class _ProductItemState extends State<ProductItem> {
           Image.network(widget.product.imageUrl),
           Text(
             widget.product.title.toUpperCase(),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: size.width > 350 ? 18 : 14,
               fontWeight: FontWeight.bold,
