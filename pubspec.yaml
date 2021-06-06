@@ -36,6 +36,7 @@ dependencies:
   firebase_auth: ^1.2.0
   cloud_firestore: ^2.2.0
   firebase_crashlytics: ^2.0.4
+  firebase_storage: ^8.1.1
   #provider
   provider: ^5.0.0
   #quiver
@@ -46,6 +47,9 @@ dependencies:
   shared_preferences: ^2.0.6
   #splashscreen
   flare_splash_screen: ^4.0.0
+  #Location
+  geolocator: ^7.0.3
+  geocoding: ^2.0.0
 
 dev_dependencies:
   flutter_test:

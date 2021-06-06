@@ -23,7 +23,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:sebbo/constants.dart';
 import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
 import 'package:sebbo/services/auth.dart';

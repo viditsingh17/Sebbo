@@ -1,5 +1,6 @@
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sebbo/checkUser.dart';
 import 'package:sebbo/login/loginScreen.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/screens/home_screen.dart';
@@ -67,6 +68,11 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> {
             userSnapshot: widget.snapshot,
           );
         }
+        // else if(isLogin == 'true'){
+        //     return CheckUser();
+        // }
+        // else{
+        //   return AuthWidget(userSnapshot: widget.snapshot,);}
       },
       startAnimation: 'Alarm',
       until: () => Future.delayed(Duration(seconds: 4)),
