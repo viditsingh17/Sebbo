@@ -43,14 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-
-          // ElevatedButton(
-          //   onPressed: () {
-          //     debugPrint('Edit Profile');
-          //   },
-          //   child: Text('Edit Profile'),
-          // ),
-
           Padding(
             padding: const EdgeInsets.only(
               top: 30,
@@ -80,6 +72,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+            child: TextButton(
+              onPressed: () {
+                debugPrint('Edit Profile');
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.edit_outlined),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text('Edit Profile'),
+                ],
+              ),
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 70),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +103,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-
           GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
