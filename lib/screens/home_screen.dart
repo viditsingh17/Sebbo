@@ -4,6 +4,9 @@ import 'package:sebbo/constants.dart';
 import 'package:sebbo/models/product.dart';
 import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
+import 'package:sebbo/widgets/custom_app_logo.dart';
+import 'package:sebbo/widgets/custom_drawer.dart';
+import 'package:sebbo/widgets/custom_drawer_item.dart';
 import 'package:sebbo/widgets/product_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -87,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: Colors.white,
         titleSpacing: 10,
         backgroundColor: Colors.blue,
+        iconTheme: IconThemeData(color: Colors.white),
         title: Row(
           children: [
             Icon(
@@ -116,16 +120,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 15.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, ProfileScreen.profileRoute);
+                print("Push notifications screen");
               },
-              child: CircleAvatar(
-                radius: 18,
-                backgroundImage: NetworkImage(
-                  'https://picsum.photos/200',
-                ), //User's profile picture will show up here
+              child: Icon(
+                Icons.notifications,
+                color: Colors.white,
               ),
             ),
           ),
@@ -176,6 +178,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      drawer: CustomDrawer(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          print('Push Add book screen');
+        },
+        label: Row(
+          children: [
+            Icon(Icons.add_outlined),
+            SizedBox(
+              width: 5,
+            ),
+            Text('Add a book'),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: ListView(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
