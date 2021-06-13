@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:sebbo/constants.dart';
 import 'package:sebbo/widgets/custom_header_back.dart';
 
@@ -13,6 +13,42 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  Razorpay _razorpay;
+  @override
+  void initState() {
+    super.initState();
+
+    _razorpay = new Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentFailure);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    _razorpay.clear();
+    super.dispose();
+  }
+
+  void _openCheckout() {
+    var options = {
+      "key": "rzp_test_sP23BjqCUfMFbX",
+      "amount": "500",
+      "name": "Sebbo Co.",
+      "description": "Add money to wallet",
+      "contact": "8282828282",
+      "email": "sampleemail@gmail.com",
+      "external": {
+        "wallets": ["Paytm", "PhonePe"]
+      }
+    };
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //design specific
@@ -85,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: WIDTH > 350 ? 20 : 10,
-              vertical: WIDTH > 350 ? 70 : 35,
+              vertical: WIDTH > 350 ? 40 : 35,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,6 +133,89 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _iconValueBuilder(Icons.store_mall_directory_outlined,
                     _numberOfBooksSold, 'Sold'),
               ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40),
+            child: Text(
+              'Your wallet',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Container(
+              width: double.infinity,
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _credits,
+                        style: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      Text(
+                        'Current Balance',
+                        style: subhead2.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  InkWell(
+                    onTap: () {
+                      //This add the access to Razorpay gateway
+                      // _openCheckout();
+                    },
+                    child: Container(
+                      width: 65,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(35),
+                        gradient: themeGradient,
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Colors.blue.withOpacity(0.5), //color of shadow
+                            spreadRadius: 7, //spread radius
+                            blurRadius: 15, // blur radius
+                            offset: Offset(0, 2), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        Icons.add_outlined,
+                        color: Colors.white,
+                        size: 34,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40),
+            child: Text(
+              'Your uploads',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           GridView.builder(
@@ -153,3 +272,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
+void _handlePaymentSuccess() {
+  print("Payment made was successful");
+  //TODO: add money to the database
+}
+
+void _handlePaymentFailure() {
+  print("Payment made was unsuccessful");
+}
+
+void _handleExternalWallet() {}

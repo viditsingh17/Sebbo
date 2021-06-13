@@ -148,8 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Container(
               padding: EdgeInsets.symmetric(
-                  vertical: WIDTH > 350 ? 20 : 10,
-                  horizontal: WIDTH > 350 ? 20 : 10),
+                  vertical: 10, horizontal: WIDTH > 350 ? 20 : 10),
               margin: EdgeInsets.fromLTRB(WIDTH > 350 ? 10 : 5, 0,
                   WIDTH > 350 ? 10 : 5, WIDTH > 350 ? 10 : 5),
               decoration: BoxDecoration(
@@ -283,8 +282,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   },
                   child: Container(
-                    width: 60,
-                    height: 60,
+                    width: WIDTH > 350 ? 70 : 60,
+                    height: WIDTH > 350 ? 70 : 60,
                     margin:
                         EdgeInsets.symmetric(horizontal: WIDTH > 350 ? 18 : 12),
                     padding: EdgeInsets.all(12),
@@ -300,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? Colors.white
                             : categories[index]['color'],
                       ),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(35),
                     ),
                     child: Icon(
                       categories[index]['icon'],

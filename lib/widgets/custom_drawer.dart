@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sebbo/constants.dart';
+import 'package:sebbo/screens/home_screen.dart';
 import 'package:sebbo/screens/profile_screen.dart';
+
 import 'package:sebbo/widgets/custom_app_logo.dart';
 import 'package:sebbo/widgets/custom_drawer_item.dart';
 
@@ -21,7 +23,7 @@ class CustomDrawer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: WIDTH > 350 ? 220 : 150,
+            height: WIDTH > 350 ? 180 : 150,
             child: DrawerHeader(
               decoration: BoxDecoration(
                 gradient: themeGradient,
@@ -82,7 +84,7 @@ class CustomDrawer extends StatelessWidget {
             label: 'Home',
             icon: Icons.home_outlined,
             onTap: () {
-              print("push home to stack");
+              // Navigator.pushNamedAndRemoveUntil(context, newRouteName, (route) => false);
             },
           ),
           CustomDrawerItem(
@@ -92,13 +94,7 @@ class CustomDrawer extends StatelessWidget {
               print("push search to stack");
             },
           ),
-          CustomDrawerItem(
-            label: 'My Wallet',
-            icon: Icons.account_balance_wallet_outlined,
-            onTap: () {
-              print("push WalletScreen to stack");
-            },
-          ),
+
           CustomDrawerItem(
             label: 'My Cart',
             icon: Icons.shopping_cart_outlined,
@@ -110,6 +106,7 @@ class CustomDrawer extends StatelessWidget {
             label: 'My Profile',
             icon: Icons.person_outline_outlined,
             onTap: () {
+              Navigator.of(context).pop();
               Navigator.pushNamed(context, ProfileScreen.profileRoute);
             },
           ),

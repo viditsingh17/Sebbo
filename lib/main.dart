@@ -25,6 +25,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
+
 import 'package:sebbo/services/auth.dart';
 import 'package:sebbo/services/auth_widget.dart';
 import 'package:sebbo/services/auth_widget_builder.dart';

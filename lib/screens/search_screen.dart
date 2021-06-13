@@ -147,8 +147,9 @@ class _SearchScreenState extends State<SearchScreen> {
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(
-                      vertical: WIDTH > 350 ? 20 : 10,
-                      horizontal: WIDTH > 350 ? 20 : 10),
+                    vertical: 10,
+                    horizontal: WIDTH > 350 ? 20 : 10,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black54),
                     borderRadius: BorderRadius.circular(10),
@@ -184,7 +185,9 @@ class _SearchScreenState extends State<SearchScreen> {
                             focusedBorder: InputBorder.none,
                             alignLabelWithHint: true,
 
-                            contentPadding: const EdgeInsets.only(top: 2),
+                            contentPadding: EdgeInsets.only(
+                              top: WIDTH > 350 ? 7 : 2,
+                            ),
 
                             // errorText: 'Search key invalid',
 
