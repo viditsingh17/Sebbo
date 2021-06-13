@@ -85,12 +85,21 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    //design specific variables
+    final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    // final HEIGHT10 = HEIGHT / 53;
+    // final WIDTH10 = WIDTH / 32;
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        titleSpacing: 10,
+        titleSpacing: WIDTH > 350 ? 10 : 5,
         backgroundColor: Colors.blue,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+          size: WIDTH > 350 ? 24 : 20,
+        ),
         title: Row(
           children: [
             Icon(
@@ -99,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
             SizedBox(
-              width: 10,
+              width: WIDTH > 350 ? 10 : 5,
             ),
             Text(
               'Ghaziabad, UP',
@@ -109,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(
-              width: 10,
+              width: WIDTH > 350 ? 10 : 5,
             ),
             Icon(
               Icons.expand_more,
@@ -138,8 +147,11 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.pushNamed(context, SearchScreen.searchRoute);
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              padding: EdgeInsets.symmetric(
+                  vertical: WIDTH > 350 ? 20 : 10,
+                  horizontal: WIDTH > 350 ? 20 : 10),
+              margin: EdgeInsets.fromLTRB(WIDTH > 350 ? 10 : 5, 0,
+                  WIDTH > 350 ? 10 : 5, WIDTH > 350 ? 10 : 5),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black54),
                 borderRadius: BorderRadius.circular(10),
@@ -150,23 +162,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icon(
                     Icons.search,
                     color: Colors.grey,
-                    size: 24,
+                    size: WIDTH > 350 ? 24 : 18,
                   ),
                   SizedBox(
-                    width: 10,
+                    width: WIDTH > 350 ? 10 : 5,
                   ),
                   Text(
                     'Search with book name, author name...',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: WIDTH > 350 ? 16 : 14,
                       color: Colors.black54,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
             ),
           ),
-          preferredSize: Size.fromHeight(60),
+          preferredSize: Size.fromHeight(WIDTH > 350 ? 60 : 40),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -187,9 +200,14 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Icon(Icons.add_outlined),
             SizedBox(
-              width: 5,
+              width: WIDTH > 350 ? 5 : 1,
             ),
-            Text('Add a book'),
+            Text(
+              'Add a book',
+              style: TextStyle(
+                fontSize: WIDTH > 350 ? 16 : 12,
+              ),
+            ),
           ],
         ),
       ),
@@ -200,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           //Search box finished
           SizedBox(
-            height: 20,
+            height: WIDTH > 350 ? 20 : 14,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
@@ -226,13 +244,13 @@ class _HomeScreenState extends State<HomeScreen> {
           GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(WIDTH > 350 ? 10 : 5),
             itemCount: _suggestedProducts.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 2 / 3,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
+              mainAxisSpacing: WIDTH > 350 ? 10 : 5,
+              crossAxisSpacing: WIDTH > 350 ? 10 : 5,
             ),
             itemBuilder: (ctx, i) => ProductItem(
               product: _suggestedProducts[i],
@@ -245,6 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _categoriesBuilder() {
+    final WIDTH = MediaQuery.of(context).size.width;
     return Container(
       height: 120,
       child: ListView.builder(
@@ -253,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           return Container(
-            padding: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(top: WIDTH > 350 ? 20 : 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -266,7 +285,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     width: 60,
                     height: 60,
-                    margin: EdgeInsets.symmetric(horizontal: 18),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: WIDTH > 350 ? 18 : 12),
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       // gradient:
@@ -296,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   categories[index]['name'],
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: WIDTH > 350 ? 12 : 10,
                     fontWeight: _selectedCategory == index
                         ? FontWeight.w400
                         : FontWeight.normal,

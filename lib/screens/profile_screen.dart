@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:sebbo/constants.dart';
+import 'package:sebbo/widgets/custom_header_back.dart';
 
 class ProfileScreen extends StatefulWidget {
   static String profileRoute = '/home/profile';
@@ -14,6 +15,12 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    //design specific
+    final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    final HEIGHT10 = HEIGHT / 53;
+    final WIDTH10 = WIDTH / 32;
     //first name only
     final String _name = 'Vidit Singh Brahmania';
     final String _numberOfBookskListed = '21';
@@ -24,34 +31,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(Icons.arrow_back),
-                ),
-                Text(
-                  'Profile',
-                  style: TextStyle(
-                    fontSize: 22,
-                  ),
-                )
-              ],
-            ),
+          CustomHeaderBack(
+            title: 'Profile',
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              top: 30,
+            padding: EdgeInsets.only(
+              top: WIDTH > 350 ? 30 : 15,
               left: 18.0,
             ),
             child: Text(
               'Vidit Singh Brahmania',
               style: TextStyle(
-                fontSize: 50,
+                fontSize: WIDTH > 350 ? 50 : 36,
                 color: Colors.black,
                 height: 1,
                 fontWeight: FontWeight.bold,
@@ -77,6 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 debugPrint('Edit Profile');
               },
+
+              //This is just shown to self
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -90,7 +83,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 70),
+            padding: EdgeInsets.symmetric(
+              horizontal: WIDTH > 350 ? 20 : 10,
+              vertical: WIDTH > 350 ? 70 : 35,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -122,13 +118,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _iconValueBuilder(icon, value, label) {
+    final WIDTH = MediaQuery.of(context).size.width;
     return Stack(
       alignment: Alignment.center,
       children: [
         Positioned(
           child: Icon(
             icon,
-            size: 100,
+            size: WIDTH > 350 ? 100 : 75,
             color: Colors.grey.withOpacity(0.1),
           ),
         ),

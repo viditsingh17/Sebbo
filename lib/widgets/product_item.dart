@@ -14,9 +14,14 @@ class ProductItem extends StatefulWidget {
 class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
+    //design specific variables
     final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    final HEIGHT10 = HEIGHT / 53;
+    final WIDTH10 = WIDTH / 32;
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(WIDTH > 350 ? 10 : 5),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
@@ -28,7 +33,7 @@ class _ProductItemState extends State<ProductItem> {
           Text(
             DateFormat.yMMMd().format(widget.product.listedOn),
             style: TextStyle(
-              fontSize: 12,
+              fontSize: WIDTH > 350 ? 12 : 10,
               fontWeight: FontWeight.bold,
               color: Colors.black54,
             ),
@@ -39,7 +44,7 @@ class _ProductItemState extends State<ProductItem> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: size.width > 350 ? 18 : 14,
+              fontSize: WIDTH > 350 ? 18 : 14,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -56,7 +61,7 @@ class _ProductItemState extends State<ProductItem> {
                 child: Text(
                   '\u20B9' + widget.product.price.toString(),
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: WIDTH > 350 ? 18 : 13,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -76,9 +81,12 @@ class _ProductItemState extends State<ProductItem> {
                       children: [
                         Text(
                           widget.addedToCart ? 'Remove' : 'Add to cart',
+                          style: TextStyle(
+                            fontSize: WIDTH > 350 ? 14 : 10,
+                          ),
                         ),
                         SizedBox(
-                          width: 10,
+                          width: WIDTH > 350 ? 10 : 4,
                         ),
                         Icon(
                           widget.addedToCart

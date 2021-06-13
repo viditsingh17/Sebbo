@@ -6,8 +6,11 @@ class CustomAppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      // padding: const EdgeInsets.all(8.0),
+
       child: Row(
+        //Just changed this line, could break SIDE DRAWER
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 6.0),
@@ -18,6 +21,8 @@ class CustomAppLogo extends StatelessWidget {
             ),
           ),
           Column(
+            //Just changed this line, could break SIDE DRAWER
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(

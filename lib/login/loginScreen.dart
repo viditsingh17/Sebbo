@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sebbo/login/otp_input.dart';
+import 'package:sebbo/widgets/custom_app_logo.dart';
 import 'package:sebbo/widgets/custom_shape.dart';
 import 'package:sebbo/widgets/my_alert_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -43,9 +44,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
 //    Orientation orientation = MediaQuery.of(context).orientation;
-    var size = MediaQuery.of(context).size;
-    var WIDTH = size.width;
-    var HEIGHT = size.height;
+    final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    final HEIGHT10 = HEIGHT / 53;
+    final WIDTH10 = WIDTH / 32;
+    print("width: ${WIDTH / 32} height: ${HEIGHT / 53}");
     return WillPopScope(
       onWillPop: () {
         return showDialog(
@@ -66,243 +70,192 @@ class _LoginScreenState extends State<LoginScreen> {
                 ));
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Form(
           key: _loginKey,
-          child: SingleChildScrollView(
-            child: Column(
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: size.width > 350 ? 20 : 10),
+            child: ListView(
               children: <Widget>[
+                // SizedBox(
+                //   height: WIDTH > 350 ? HEIGHT * 0.05 : HEIGHT * 0.01,
+                // ),
                 Stack(
-                  children: <Widget>[
-                    Positioned(
-                      child: Transform.scale(
-                        scale: 3,
-                        child: CustomShape(
-                          width: WIDTH,
-                          height: size.width > 350 ? HEIGHT : HEIGHT * 0.5,
-                        ),
+                  alignment: Alignment.center,
+                  children: [
+                    Transform.scale(
+                      scale: 1,
+                      child: CustomShape(
+                        width: WIDTH,
+                        height: WIDTH,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: size.height - MediaQuery.of(context).padding.top,
-                      padding: EdgeInsets.all(size.width > 350 ? 20 : 10),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                            height: HEIGHT * 0.05,
+                    Transform.scale(
+                      scale: WIDTH > 350 ? 1.4 : 0.7,
+                      child: CustomAppLogo(),
+                    ),
+                  ],
+                ),
+                Text(
+                  'Login',
+                  style: GoogleFonts.montserrat(
+                    fontSize: WIDTH > 350 ? 32 : 24,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: HEIGHT10,
+                ),
+                Text(
+                  'Welcome',
+                  style: GoogleFonts.raleway(
+                    fontSize: WIDTH > 350 ? 24 : 20,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  //                      style: TextStyle(
+                  //                        fontSize: 24,
+                  //                        fontFamily: 'Montserrat',
+                  //                        fontWeight: FontWeight.w300,
+                  //                      ),
+                ),
+                const Text(
+                  'Sign in to continue with your mobile number.',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black54,
+                  ),
+                ),
+                SizedBox(
+                  height: WIDTH > 350 ? 2 * HEIGHT10 : HEIGHT10,
+                ),
+                Container(
+                  width: WIDTH,
+                  margin: EdgeInsets.all(5),
+                  child: _buildInput(),
+                ),
+                SizedBox(
+                  height: WIDTH > 350 ? 2 * HEIGHT10 : HEIGHT10,
+                ),
+                const Text(
+                  'Sebbo will send a 6 digit OTP via SMS to verify your phone number.',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black54,
+                  ),
+                ),
+                SizedBox(
+                  height: WIDTH > 350 ? 4 * HEIGHT10 : 2 * HEIGHT10,
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  leading: Checkbox(
+                    value: isTCChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isTCChecked = value;
+                      });
+                    },
+                    activeColor: themeColor,
+                  ),
+                  title: RichText(
+                    text: TextSpan(
+                        text: "I agree to the ",
+                        style: TextStyle(color: Colors.black),
+                        children: [
+                          TextSpan(
+                            text: "Terms & conditions",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: themeColor,
+                                decoration: TextDecoration.underline),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                if (await canLaunch(
+                                    'http://privacy-html.stackstaging.com/1_2_terms-conditions.html')) {
+                                  await launch(
+                                      'http://privacy-html.stackstaging.com/1_2_terms-conditions.html');
+                                }
+                              },
                           ),
-                          Container(
-                            width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset(
-                                  "assets/images/logo.png",
-                                  height: size.width > 350 ? 54 : 44,
-                                  fit: BoxFit.cover,
+                          TextSpan(
+                            text: " and the ",
+                          ),
+                          TextSpan(
+                            text: "Privacy policy",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: themeColor,
+                                decoration: TextDecoration.underline),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                if (await canLaunch(
+                                    'http://privacy-html.stackstaging.com')) {
+                                  await launch(
+                                      'http://privacy-html.stackstaging.com');
+                                }
+                              },
+                          ),
+                          TextSpan(
+                            text: ".",
+                          ),
+                        ]),
+                  ),
+                ),
+                myRaisedButton(
+                  label: 'Get OTP',
+                  onPressed: () {
+                    if (!_loginKey.currentState.validate()) {
+                      return;
+                    }
+                    if (!isTCChecked) {
+                      showDialog(
+                          context: context,
+                          builder: (builder) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              title: Text('Terms and conditions'),
+                              content: Text(
+                                "Please accept the terms and conditions first.",
+                                style: subhead2.copyWith(
+                                  fontSize: 14,
+                                  color: Colors.black.withOpacity(0.8),
                                 ),
-                                SizedBox(
-                                  height: HEIGHT * 0.05,
-                                ),
-                                Container(
-                                  width: WIDTH * 0.6,
-                                  height: 2,
-                                  color: Colors.white.withOpacity(0.8),
-                                ),
-                                SizedBox(
-                                  height: HEIGHT * 0.05,
-                                ),
-                                Text(
-                                  'Sebbo',
-                                  style: GoogleFonts.montserrat(
-                                    color: Colors.white,
-                                    fontSize: size.width > 350 ? 30 : 24,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Text(
-                                  'Sell and buy books online',
-                                  style: subhead1.copyWith(
-                                    color: Colors.white,
-                                    fontSize: size.width > 350 ? 14 : 12,
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: Text(
+                                    'Okay',
+                                    style: subhead2.copyWith(
+                                      fontSize: 14,
+                                      color: themeColor,
+                                    ),
                                   ),
                                 ),
                               ],
-                            ),
-                          ),
-                          Expanded(child: Container()),
-                          Text(
-                            'Login',
-                            style: GoogleFonts.montserrat(
-                              fontSize: size.width > 350 ? 32 : 24,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Welcome',
-                            style: GoogleFonts.raleway(
-                              fontSize: size.width > 350 ? 24 : 20,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            //                      style: TextStyle(
-                            //                        fontSize: 24,
-                            //                        fontFamily: 'Montserrat',
-                            //                        fontWeight: FontWeight.w300,
-                            //                      ),
-                          ),
-                          const Text(
-                            'Sign in to continue with your mobile number.',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            width: size.width,
-                            margin: EdgeInsets.all(5),
-                            child: _buildInput(),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const Text(
-                            'Sebbo will send a 6 digit OTP via SMS to verify your phone number.',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          SizedBox(
-                            height: WIDTH * 0.1,
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.all(0),
-                            leading: Checkbox(
-                              value: isTCChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  isTCChecked = value;
-                                });
-                              },
-                              activeColor: themeColor,
-                            ),
-                            title: RichText(
-                              text: TextSpan(
-                                  text: "I agree to the ",
-                                  style: TextStyle(color: Colors.black),
-                                  children: [
-                                    TextSpan(
-                                      text: "Terms & conditions",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: themeColor,
-                                          decoration: TextDecoration.underline),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () async {
-                                          if (await canLaunch(
-                                              'http://privacy-html.stackstaging.com/1_2_terms-conditions.html')) {
-                                            await launch(
-                                                'http://privacy-html.stackstaging.com/1_2_terms-conditions.html');
-                                          }
-                                        },
-                                    ),
-                                    TextSpan(
-                                      text: " and the ",
-                                    ),
-                                    TextSpan(
-                                      text: "Privacy policy",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: themeColor,
-                                          decoration: TextDecoration.underline),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () async {
-                                          if (await canLaunch(
-                                              'http://privacy-html.stackstaging.com')) {
-                                            await launch(
-                                                'http://privacy-html.stackstaging.com');
-                                          }
-                                        },
-                                    ),
-                                    TextSpan(
-                                      text: ".",
-                                    ),
-                                  ]),
-                            ),
-                          ),
-                          myRaisedButton(
-                            label: 'Get OTP',
-                            onPressed: () {
-                              if (!_loginKey.currentState.validate()) {
-                                return;
-                              }
-                              if (!isTCChecked) {
-                                showDialog(
-                                    context: context,
-                                    builder: (builder) {
-                                      return AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        title: Text('Terms and conditions'),
-                                        content: Text(
-                                          "Please accept the terms and conditions first.",
-                                          style: subhead2.copyWith(
-                                            fontSize: 14,
-                                            color:
-                                                Colors.black.withOpacity(0.8),
-                                          ),
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop(true);
-                                            },
-                                            child: Text(
-                                              'Okay',
-                                              style: subhead2.copyWith(
-                                                fontSize: 14,
-                                                color: themeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    });
-                                return;
-                              }
-                              _loginKey.currentState.save();
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return OtpInput(
-                                      number: (countryCode.text + number),
-                                    );
-                                  },
-                                ),
-                              );
-                              // verify(number);
-                            },
-                          ),
-                          SizedBox(
-                            height: WIDTH * 0.1,
-                          ),
-                        ],
+                            );
+                          });
+                      return;
+                    }
+                    _loginKey.currentState.save();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return OtpInput(
+                            number: (countryCode.text + number),
+                          );
+                        },
                       ),
-                    ),
-                  ],
+                    );
+                    // verify(number);
+                  },
+                ),
+                SizedBox(
+                  height: WIDTH > 350 ? HEIGHT10 : 0,
                 ),
               ],
             ),

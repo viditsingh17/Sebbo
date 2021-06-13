@@ -9,50 +9,71 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //design specific variables
+    final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    // final HEIGHT10 = HEIGHT / 53;
+    // final WIDTH10 = WIDTH / 32;
     return Drawer(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              gradient: themeGradient,
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Transform.scale(
-                      scale: 0.9,
-                      child: CustomAppLogo(),
-                    ),
-                  ],
-                ),
-                Expanded(child: Container()),
-                Text(
-                  'Hello,',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
+          SizedBox(
+            height: WIDTH > 350 ? 220 : 150,
+            child: DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: themeGradient,
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: WIDTH > 350 ? 10 : 5,
+                horizontal: WIDTH > 350 ? 15 : 10,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomAppLogo(),
+                      WIDTH > 350
+                          ? Container()
+                          : IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              icon: Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
+                            ),
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Text(
-                    'Vidit Singh Brahmania'.toUpperCase(),
+                  Expanded(child: Container()),
+                  Text(
+                    'Hello,',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       color: Colors.white,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Text(
+                      'Vidit Singh Brahmania'.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -109,7 +130,7 @@ class CustomDrawer extends StatelessWidget {
             onTap: () {
               print("Show settings page");
             },
-          ),
+          )
         ],
       ),
     );

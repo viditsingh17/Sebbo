@@ -8,6 +8,7 @@ import 'package:sebbo/login/loginScreen.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/screens/home_screen.dart';
 import 'package:sebbo/userInfo.dart';
+import 'package:sebbo/widgets/custom_app_logo.dart';
 
 import 'package:sebbo/widgets/my_alert_dialog.dart';
 
@@ -38,7 +39,7 @@ class _CheckUserState extends State<CheckUser> {
     myNumber = await SharedPrefFunction().getNumberPreference();
     DocumentSnapshot doc = await usersRef.doc(myNumber).get();
     if (doc.exists) {
-        createUserFromDoc(doc, context);
+      createUserFromDoc(doc, context);
       setState(() {
         dataExists = true;
         isLoading = false;
@@ -114,37 +115,27 @@ class _CheckUserState extends State<CheckUser> {
                 ),
               ),
               Positioned(
-                bottom: -size.width * 0.014 * 1 ,
+                bottom: -size.width * 0.014 * 1,
                 right: -size.width * 0.014 * 30,
                 child: Image.asset(
                   'assets/images/illustration.png',
-                  width: size.height*0.6,
+                  width: size.height * 0.6,
                 ),
               ),
               Positioned(
-                bottom: size.width * 0.15,
-                right: size.width * 0.05,
-                child: Row(
+                bottom: 10,
+                left: 10,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/images/logo_black.png',
-                      height: 30,
+                    Text(
+                      'Sebbo',
+                      style: appBarTextStyle.copyWith(fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 10,
+                    Text(
+                      'Sell and Buying Books Online',
+                      style: subhead1,
                     ),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          'Sebbo',
-                          style: appBarTextStyle.copyWith(fontSize: 20),
-                        ),
-                        Text(
-                          'App for Selling and Buying Books',
-                          style: subhead1,
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),
@@ -159,12 +150,12 @@ class _CheckUserState extends State<CheckUser> {
                           style: heading1.copyWith(
                               fontSize: 38, color: Colors.white)),
                       Text(
-                        'Back,',
+                        'Mate 🙂',
                         style: heading1.copyWith(
                             fontSize: 38, color: Colors.white),
                       ),
                       Text(
-                            currentUser.firstName,
+                        currentUser.firstName,
                         style: GoogleFonts.raleway(
                             fontSize: 38,
                             fontWeight: FontWeight.w300,
@@ -176,19 +167,17 @@ class _CheckUserState extends State<CheckUser> {
                       RaisedButton(
                         elevation: 20,
                         onPressed: () {
-
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) {
-                                  return HomeScreen();
-                                }));
-
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) {
+                            return HomeScreen();
+                          }));
                         },
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
                         padding:
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         child: Text(
                           'Let\s Go!',
                           style: TextStyle(fontSize: 18, color: themeColor),
@@ -263,37 +252,27 @@ class _CheckUserState extends State<CheckUser> {
                 ),
               ),
               Positioned(
-                bottom: -size.width * 0.014 * 1 ,
+                bottom: -size.width * 0.014 * 1,
                 right: -size.width * 0.014 * 30,
                 child: Image.asset(
                   'assets/images/illustration.png',
-                  width: size.height*0.6,
+                  width: size.height * 0.6,
                 ),
               ),
               Positioned(
-                bottom: size.width * 0.15,
-                right: size.width * 0.05,
-                child: Row(
+                bottom: 10,
+                left: 10,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/images/logo_black.png',
-                      height: 30,
+                    Text(
+                      'Sebbo',
+                      style: appBarTextStyle.copyWith(fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 10,
+                    Text(
+                      'Sell and Buying Books Online',
+                      style: subhead1,
                     ),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          'Sebbo',
-                          style: appBarTextStyle.copyWith(fontSize: 20),
-                        ),
-                        Text(
-                          'App for Selling and Buying Books',
-                          style: subhead1,
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),
@@ -307,7 +286,6 @@ class _CheckUserState extends State<CheckUser> {
                       Text('Welcome',
                           style: heading1.copyWith(
                               fontSize: 38, color: Colors.white)),
-
                       Text(
                         'Mate 🙂',
                         style: GoogleFonts.raleway(
@@ -321,19 +299,17 @@ class _CheckUserState extends State<CheckUser> {
                       RaisedButton(
                         elevation: 20,
                         onPressed: () {
-
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (context) {
-                                return UserInfo(flag: true);
-                              }));
-
+                            return UserInfo(flag: true);
+                          }));
                         },
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
                         padding:
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         child: Text(
                           'Let\s Go!',
                           style: TextStyle(fontSize: 18, color: themeColor),
@@ -349,8 +325,6 @@ class _CheckUserState extends State<CheckUser> {
       );
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {

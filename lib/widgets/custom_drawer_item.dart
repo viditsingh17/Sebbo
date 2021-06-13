@@ -9,10 +9,19 @@ class CustomDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //design specific variables
+    final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    // final HEIGHT10 = HEIGHT / 53;
+    // final WIDTH10 = WIDTH / 32;
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: WIDTH > 350 ? 20 : 15,
+          vertical: WIDTH > 350 ? 15 : 8,
+        ),
         child: Row(
           children: [
             Icon(
@@ -25,7 +34,7 @@ class CustomDrawerItem extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: WIDTH > 350 ? 18 : 15,
                 fontWeight: FontWeight.bold,
                 color: Colors.black.withOpacity(0.7),
               ),

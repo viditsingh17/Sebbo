@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:sebbo/models/product.dart';
 import 'package:sebbo/widgets/product_item.dart';
 
@@ -44,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Product(
         id: 'a1',
         description: 'bal lla flaslfla f',
-        price: 299,
+        price: 1299,
         imageUrl: 'https://picsum.photos/200',
         listedOn: DateTime.now(),
         owner: 'Rakesh Roshan',
@@ -53,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
         id: 'a1',
         description:
             'lorem fnalkdasdmm amdoamdoimo dmoamd in nfnaisnjfn indfa nafn ;aofj oifmoa noan oan nonoanfaoen oanbfoanfeon onoanwedmnajmn mnamnsdoamodmaomda ndaod o',
-        price: 299,
+        price: 4299,
         imageUrl: 'https://picsum.photos/200',
         listedOn: DateTime.now(),
         owner: 'Rakesh Roshan',
@@ -69,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Product(
         id: 'a1',
         description: 'bal lla flaslfla f',
-        price: 299,
+        price: 3299,
         imageUrl: 'https://picsum.photos/200',
         listedOn: DateTime.now(),
         owner: 'Rakesh Roshan',
@@ -77,7 +78,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Product(
         id: 'a1',
         description: 'bal lla flaslfla f',
-        price: 299,
+        price: 5299,
         imageUrl: 'https://picsum.photos/200',
         listedOn: DateTime.now(),
         owner: 'Rakesh Roshan',
@@ -109,19 +110,13 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    //design specific variables
+    final size = MediaQuery.of(context).size;
+    final WIDTH = size.width;
+    final HEIGHT = size.height;
+    // final HEIGHT10 = HEIGHT / 53;
+    // final WIDTH10 = WIDTH / 32;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Search'),
-      //   actions: [
-      //     Padding(
-      //       padding: const EdgeInsets.only(right: 15.0),
-      //       child: CircleAvatar(
-      //         radius: 18,
-      //         child: Text('U'), //User's profile picture will show up here
-      //       ),
-      //     ),
-      //   ],
-      // ),
       body: ListView(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
@@ -151,9 +146,9 @@ class _SearchScreenState extends State<SearchScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  padding: EdgeInsets.symmetric(
+                      vertical: WIDTH > 350 ? 20 : 10,
+                      horizontal: WIDTH > 350 ? 20 : 10),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black54),
                     borderRadius: BorderRadius.circular(10),
@@ -164,10 +159,10 @@ class _SearchScreenState extends State<SearchScreen> {
                       Icon(
                         Icons.search,
                         color: Colors.grey,
-                        size: 24,
+                        size: WIDTH > 350 ? 24 : 18,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: WIDTH > 350 ? 10 : 5,
                       ),
                       Expanded(
                         child: TextField(
@@ -176,7 +171,11 @@ class _SearchScreenState extends State<SearchScreen> {
                             fontSize: 16,
                             height: 0.5,
                           ),
-                          scrollPadding: const EdgeInsets.all(0),
+                          expands: false,
+                          maxLines: 1,
+                          cursorHeight: 20,
+                          showCursor: false,
+                          cursorColor: Colors.red,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             enabledBorder: InputBorder.none,
@@ -185,11 +184,15 @@ class _SearchScreenState extends State<SearchScreen> {
                             focusedBorder: InputBorder.none,
                             alignLabelWithHint: true,
 
-                            contentPadding: const EdgeInsets.all(0),
+                            contentPadding: const EdgeInsets.only(top: 2),
 
                             // errorText: 'Search key invalid',
 
-                            labelText: 'Search with book name, author name...',
+                            hintText: 'Search with book name, author name...',
+                            hintStyle: TextStyle(
+                              fontSize: WIDTH > 350 ? 16 : 14,
+                              color: Colors.black54,
+                            ),
                             isDense: true,
                             filled: false,
                           ),
@@ -250,7 +253,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           //Search box finished
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
             child: Text(
               'Results',
               style: TextStyle(
@@ -262,13 +265,13 @@ class _SearchScreenState extends State<SearchScreen> {
           GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(WIDTH > 350 ? 10 : 5),
             itemCount: resultProducts.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 2 / 3,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
+              mainAxisSpacing: WIDTH > 350 ? 10 : 5,
+              crossAxisSpacing: WIDTH > 350 ? 10 : 5,
             ),
             itemBuilder: (ctx, i) => ProductItem(
               product: resultProducts[i],
