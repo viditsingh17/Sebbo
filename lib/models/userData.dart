@@ -7,7 +7,7 @@ UserData currentUser;
 
 void createUserFromDoc(doc,context){
   currentUser = UserData.fromDocument(doc);
-  List<String> userData = [currentUser.pincode,currentUser.firstName,currentUser.lastName,currentUser.email,currentUser.myNumber,currentUser.country,currentUser.state,currentUser.city];
+  List<String> userData = [currentUser.pincode,currentUser.firstName,currentUser.lastName,currentUser.email,currentUser.myNumber,currentUser.country,currentUser.state,currentUser.city,currentUser.wallet.toString(),currentUser.noOfBooks.toString(),currentUser.sold.toString()];
   SharedPrefFunction().saveUserData(currentUser.myNumber, userData);
   Provider.of<Data>(context,listen: false).changeMyData(userData);
 }
@@ -26,6 +26,9 @@ class UserData {
   final String pincode;
   final String country;
   final String name;
+  final int wallet;
+  final int noOfBooks;
+  final int sold;
 
   UserData({
     this.firstName,
@@ -37,6 +40,9 @@ class UserData {
     this.pincode,
     this.country,
     this.name,
+    this.wallet,
+    this.noOfBooks,
+    this.sold
   });
 
   factory UserData.fromDocument(DocumentSnapshot doc){
@@ -50,7 +56,10 @@ class UserData {
         city: doc.get('city'),
         state: doc.get('state'),
         country: doc.get('country'),
-        pincode: doc.get('pincode')
+        pincode: doc.get('pincode'),
+        wallet: doc.get('wallet'),
+        noOfBooks: doc.get('noOfBooks'),
+        sold: doc.get('sold')
     );
   }
 
@@ -64,7 +73,10 @@ class UserData {
       state: doc[6],
       city: doc[7],
       country: doc[5],
-      pincode: doc[0]
+      pincode: doc[0],
+      wallet: int.parse(doc[8]),
+      noOfBooks: int.parse(doc[9]),
+      sold: int.parse(doc[10])
     );
   }
 

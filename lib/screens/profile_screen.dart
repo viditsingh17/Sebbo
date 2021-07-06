@@ -1,7 +1,8 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:sebbo/constants.dart';
+import 'package:sebbo/models/userData.dart';
+import 'package:sebbo/userInfo.dart';
 import 'package:sebbo/widgets/custom_header_back.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -58,10 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final HEIGHT10 = HEIGHT / 53;
     final WIDTH10 = WIDTH / 32;
     //first name only
-    final String _name = 'Vidit Singh Brahmania';
-    final String _numberOfBookskListed = '21';
-    final String _numberOfBooksSold = '5';
-    final String _credits = '121';
+    final String _numberOfBooksListed = currentUser.noOfBooks.toString();
+    final String _numberOfBooksSold = currentUser.sold.toString();
+    final String _credits = currentUser.wallet.toString();
     return Scaffold(
       body: ListView(
         shrinkWrap: true,
@@ -76,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               left: 18.0,
             ),
             child: Text(
-              'Vidit Singh Brahmania',
+              currentUser.name,
               style: TextStyle(
                 fontSize: WIDTH > 350 ? 50 : 36,
                 color: Colors.black,
@@ -103,6 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: TextButton(
               onPressed: () {
                 debugPrint('Edit Profile');
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                  return UserInfo(flag: false);
+                }));
               },
 
               //This is just shown to self
@@ -129,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _iconValueBuilder(
                     Icons.account_balance_wallet_outlined, _credits, 'Credit'),
                 _iconValueBuilder(
-                    Icons.auto_stories, _numberOfBookskListed, 'Books'),
+                    Icons.auto_stories, _numberOfBooksListed, 'Books'),
                 _iconValueBuilder(Icons.store_mall_directory_outlined,
                     _numberOfBooksSold, 'Sold'),
               ],

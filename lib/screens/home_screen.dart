@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sebbo/configurations.dart';
-import 'package:sebbo/constants.dart';
 import 'package:sebbo/models/product.dart';
-import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
-import 'package:sebbo/widgets/custom_app_logo.dart';
 import 'package:sebbo/widgets/custom_drawer.dart';
-import 'package:sebbo/widgets/custom_drawer_item.dart';
 import 'package:sebbo/widgets/product_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -193,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: CustomDrawer(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          print('Push Add book screen');
+          print('Push Add book screen line 192 home screen');
         },
         label: Row(
           children: [

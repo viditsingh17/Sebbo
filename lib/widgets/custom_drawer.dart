@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sebbo/constants.dart';
-import 'package:sebbo/screens/home_screen.dart';
+import 'package:sebbo/models/userData.dart';
 import 'package:sebbo/screens/profile_screen.dart';
+import 'package:sebbo/services/auth.dart';
 
 import 'package:sebbo/widgets/custom_app_logo.dart';
 import 'package:sebbo/widgets/custom_drawer_item.dart';
 
+import 'my_alert_dialog.dart';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key key}) : super(key: key);
+
+  Future<void> signOut(BuildContext context) async {
+    try {
+      final auth = Provider.of<AuthBase>(context, listen: false);
+      await auth.signOut();
+    } catch (e) {
+      print(e);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     //design specific variables
     final size = MediaQuery.of(context).size;
     final WIDTH = size.width;
-    final HEIGHT = size.height;
+    //final HEIGHT = size.height;
     // final HEIGHT10 = HEIGHT / 53;
     // final WIDTH10 = WIDTH / 32;
     return Drawer(
@@ -66,7 +80,7 @@ class CustomDrawer extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Text(
-                      'Vidit Singh Brahmania'.toUpperCase(),
+                      currentUser.name.toUpperCase(),
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -116,6 +130,7 @@ class CustomDrawer extends StatelessWidget {
             icon: Icons.logout_outlined,
             onTap: () {
               print("Log the user out");
+              createMyDialog(context);
             },
           ),
           Divider(),
@@ -131,5 +146,39 @@ class CustomDrawer extends StatelessWidget {
         ],
       ),
     );
+  }
+  createMyDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return MyAlertDialog(
+            message: 'Are you sure you want to logout?',
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'No',
+                  style: subhead2.copyWith(
+                    fontSize: 14,
+                    color: themeColor,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  signOut(context);
+                },
+                child: Text(
+                  'Yes',
+                  style: subhead2.copyWith(
+                    fontSize: 14,
+                    color: themeColor,
+                  ),
+                ),
+              ),
+            ],);
+        });
   }
 }

@@ -2,6 +2,7 @@ import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sebbo/checkUser.dart';
 import 'package:sebbo/login/loginScreen.dart';
+import 'package:sebbo/models/userData.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/screens/home_screen.dart';
 import 'package:sebbo/services/auth_widget.dart';
@@ -39,6 +40,7 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> {
         if (data != null) {
           print(data.toString() + 'Hello ');
           myData = data;
+          createUserFromList(myData);
         }
       });
     }
