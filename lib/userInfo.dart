@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/loading/progress.dart';
 import 'package:sebbo/login/loginScreen.dart';
 import 'package:sebbo/main.dart';
@@ -11,9 +12,7 @@ import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/screens/home_screen.dart';
 import 'package:sebbo/widgets/my_alert_dialog.dart';
 import '../checkUser.dart';
-import '../constants.dart';
 import 'models/userData.dart';
-
 
 class UserInfo extends StatefulWidget {
   final bool flag;
@@ -21,7 +20,6 @@ class UserInfo extends StatefulWidget {
   @override
   _UserInfoState createState() => _UserInfoState();
 }
-
 
 class _UserInfoState extends State<UserInfo> {
   String _firstName;
@@ -41,16 +39,16 @@ class _UserInfoState extends State<UserInfo> {
   bool isLoading = false;
   @override
   void initState() {
-    widget.flag?getUserLocation():editProfile();
+    widget.flag ? getUserLocation() : editProfile();
     super.initState();
   }
 
-  editProfile(){
+  editProfile() {
     print(currentUser.name);
     firstNameController.text = currentUser.firstName;
     lastNameController.text = currentUser.lastName;
     emailController.text = currentUser.email;
-    countryController.text= currentUser.country;
+    countryController.text = currentUser.country;
     stateController.text = currentUser.state;
     cityController.text = currentUser.city;
     pincodeController.text = currentUser.pincode;
@@ -59,14 +57,14 @@ class _UserInfoState extends State<UserInfo> {
   Future<void> getUserLocation() async {
     try {
       LocationPermission permission = await Geolocator.requestPermission();
-      if(permission == LocationPermission.deniedForever){
+      if (permission == LocationPermission.deniedForever) {
         await Geolocator.openLocationSettings();
       }
-      Position position = await Geolocator
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
 
-      List<Placemark> placeMarks = await
-          placemarkFromCoordinates(position.latitude, position.longitude);
+      List<Placemark> placeMarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
       Placemark placeMark = placeMarks[0];
       cityController.text = placeMark.subAdministrativeArea;
       stateController.text = placeMark.administrativeArea;
@@ -76,7 +74,6 @@ class _UserInfoState extends State<UserInfo> {
       print(e);
     }
   }
-
 
   createFirebase() async {
     setState(() {
@@ -96,7 +93,7 @@ class _UserInfoState extends State<UserInfo> {
       "0",
       "0"
     ];
-    Provider.of<Data>(context,listen: false).changeMyData(myData);
+    Provider.of<Data>(context, listen: false).changeMyData(myData);
     createUserFromList(myData);
     DocumentReference docRef = usersRef.doc(myNumber);
     await docRef.set({
@@ -109,15 +106,15 @@ class _UserInfoState extends State<UserInfo> {
       'state': stateController.text,
       'city': cityController.text,
       'pincode': pincodeController.text,
-      'wallet':0,
-      'noOfBooks':0,
-      'sold':0
+      'wallet': 0,
+      'noOfBooks': 0,
+      'sold': 0
     });
     SharedPrefFunction().saveUserData(myNumber, myData);
     setState(() {
       isLoading = false;
     });
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return HomeScreen();
     }));
   }
@@ -136,7 +133,7 @@ class _UserInfoState extends State<UserInfo> {
       currentUser.noOfBooks.toString(),
       currentUser.sold.toString()
     ];
-    Provider.of<Data>(context,listen: false).changeMyData(myData);
+    Provider.of<Data>(context, listen: false).changeMyData(myData);
     createUserFromList(myData);
     SharedPrefFunction().saveUserData(currentUser.myNumber, myData);
     usersRef.doc(currentUser.myNumber).update({
@@ -149,20 +146,22 @@ class _UserInfoState extends State<UserInfo> {
       'state': stateController.text,
       'city': cityController.text,
       'pincode': pincodeController.text,
-      'wallet':currentUser.wallet,
-      'noOfBooks':currentUser.noOfBooks,
-      'sold':currentUser.sold
+      'wallet': currentUser.wallet,
+      'noOfBooks': currentUser.noOfBooks,
+      'sold': currentUser.sold
     });
-    try{
+    try {
       SnackBar snackBar = SnackBar(
         content: Text('Profile Updated!'),
       );
-      _scaffoldKey.currentState.showSnackBar(snackBar);}catch(e){print(e);}
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+    } catch (e) {
+      print(e);
+    }
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return HomeScreen();
     }));
   }
-
 
   Widget _buildFirstName() {
     return myFromField(
@@ -206,7 +205,7 @@ class _UserInfoState extends State<UserInfo> {
           return 'Email is required.';
         }
         if (!RegExp(
-            r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$')
+                r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$')
             .hasMatch(value)) {
           return 'invalid email address';
         }
@@ -279,145 +278,150 @@ class _UserInfoState extends State<UserInfo> {
     return isLoading
         ? circularProgress()
         : WillPopScope(
-      onWillPop: (){
-        return showDialog(
-          context: context,
-          builder: (context) =>  MyAlertDialog(
-            message: 'Do you want to exit the app?',
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: Text(
-                  'No',
-                  style: subhead2.copyWith(
-                    fontSize: 14,
-                    color: themeColor,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-                child: Text(
-                  'Yes',
-                  style: subhead2.copyWith(
-                    fontSize: 14,
-                    color: themeColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              widget.flag ?  Navigator.pushReplacementNamed(context,CheckUser.checkRoute,
-              ):Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-                return HomeScreen();
-              }));
-            },
-          ),
-          title: Text(
-            widget.flag?'User Profile':'Edit Profile',
-            style: appBarTextStyle,
-          ),
-          backgroundColor: Colors.white,
-          elevation:5,
-        ),
-        backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Expanded(
-                      child: _buildFirstName(),
+            onWillPop: () {
+              return showDialog(
+                context: context,
+                builder: (context) => MyAlertDialog(
+                  message: 'Do you want to exit the app?',
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(false);
+                      },
+                      child: Text(
+                        'No',
+                        style: subhead2.copyWith(
+                          fontSize: 14,
+                          color: themeColor,
+                        ),
+                      ),
                     ),
-                    Expanded(
-                      child: _buildLastName(),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(true);
+                      },
+                      child: Text(
+                        'Yes',
+                        style: subhead2.copyWith(
+                          fontSize: 14,
+                          color: themeColor,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                /*
+              );
+            },
+            child: Scaffold(
+              key: _scaffoldKey,
+              appBar: AppBar(
+                centerTitle: true,
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    widget.flag
+                        ? Navigator.pushReplacementNamed(
+                            context,
+                            CheckUser.checkRoute,
+                          )
+                        : Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) {
+                            return HomeScreen();
+                          }));
+                  },
+                ),
+                title: Text(
+                  widget.flag ? 'User Profile' : 'Edit Profile',
+                  style: appBarTextStyle,
+                ),
+                backgroundColor: Colors.white,
+                elevation: 5,
+              ),
+              backgroundColor: Colors.white,
+              body: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Form(
+                  key: _formKey,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: <Widget>[
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Expanded(
+                            child: _buildFirstName(),
+                          ),
+                          Expanded(
+                            child: _buildLastName(),
+                          ),
+                        ],
+                      ),
+                      /*
 
 
                       Gender and DOB will Come here.
 
 
                        */
-                _buildEmail(),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Expanded(
-                      child: _buildCountry(),
-                    ),
-                    Expanded(child: _buildState()),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Expanded(
-                      child: _buildCity(),
-                    ),
-                    Expanded(
-                      child: _buildPincode(),
-                    ),
-                  ],
-                ),
-                TextButton.icon(
-                  onPressed: () {
-                    getUserLocation();
-                  },
-                  icon: Icon(
-                    Icons.my_location,
-                    color: Colors.blue,
+                      _buildEmail(),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Expanded(
+                            child: _buildCountry(),
+                          ),
+                          Expanded(child: _buildState()),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Expanded(
+                            child: _buildCity(),
+                          ),
+                          Expanded(
+                            child: _buildPincode(),
+                          ),
+                        ],
+                      ),
+                      TextButton.icon(
+                        onPressed: () {
+                          getUserLocation();
+                        },
+                        icon: Icon(
+                          Icons.my_location,
+                          color: Colors.blue,
+                        ),
+                        label: Text(
+                          'Use current Location',
+                          style: subhead2,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      myRaisedButton(
+                        label: widget.flag ? 'Next' : 'Save Changes',
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            return;
+                          }
+                          _formKey.currentState.save();
+                          print(_firstName + " " + _lastName);
+                          print(_emailId);
+                          if (!isLoading) {
+                            widget.flag ? createFirebase() : saveChanges();
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
                   ),
-                  label: Text(
-                    'Use current Location',
-                    style: subhead2,
-                  ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                myRaisedButton(
-                  label: widget.flag?'Next':'Save Changes',
-                  onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
-                    print(_firstName + " " + _lastName);
-                    print(_emailId);
-                    if(!isLoading){
-                      widget.flag?createFirebase():saveChanges();}
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
-

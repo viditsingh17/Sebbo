@@ -23,6 +23,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:sebbo/screens/list_book_screen.dart';
 import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
 
@@ -90,21 +91,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(
-        AssetImage(
-          "assets/images/logo.png",
-        ),
-        context);
-    precacheImage(
-        AssetImage(
-          "assets/images/bg_book_plant.jpg",
-        ),
-        context);
-    precacheImage(
-        AssetImage(
-          "assets/images/bg_diary.png",
-        ),
-        context);
+    // precacheImage(
+    //     AssetImage(
+    //       "assets/images/logo.png",
+    //     ),
+    //     context);
+    // precacheImage(
+    //     AssetImage(
+    //       "assets/images/bg_book_plant.jpg",
+    //     ),
+    //     context);
+    // precacheImage(
+    //     AssetImage(
+    //       "assets/images/bg_diary.png",
+    //     ),
+    //     context);
     return AuthWidgetBuilder(builder: (context, userSnapshot) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -142,6 +143,7 @@ class _MyAppState extends State<MyApp> {
           LoginScreen.loginRoute: (ctx) => LoginScreen(),
           SearchScreen.searchRoute: (ctx) => SearchScreen(),
           ProfileScreen.profileRoute: (ctx) => ProfileScreen(),
+          ListBook.listRoute: (ctx) => ListBook(),
         },
       );
     });

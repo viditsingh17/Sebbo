@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sebbo/constants.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/models/userData.dart';
 import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/services/auth.dart';
@@ -21,7 +21,6 @@ class CustomDrawer extends StatelessWidget {
       print(e);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -147,6 +146,7 @@ class CustomDrawer extends StatelessWidget {
       ),
     );
   }
+
   createMyDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -178,7 +178,8 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-            ],);
+            ],
+          );
         });
   }
 }

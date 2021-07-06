@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:sebbo/constants.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/models/userData.dart';
 import 'package:sebbo/userInfo.dart';
 import 'package:sebbo/widgets/custom_header_back.dart';
@@ -103,7 +103,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: TextButton(
               onPressed: () {
                 debugPrint('Edit Profile');
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                Navigator.of(context)
+                    .pushReplacement(MaterialPageRoute(builder: (context) {
                   return UserInfo(flag: false);
                 }));
               },

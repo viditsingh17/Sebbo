@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
+import 'package:sebbo/config/constants.dart';
 
 class MyAlertDialog extends StatefulWidget {
   final List<Widget> actions;
@@ -25,10 +24,10 @@ class _MyAlertDialogState extends State<MyAlertDialog> {
       content: Text(
 //        'Are you sure you want to logout?',
         widget.message,
-        style: subhead2.copyWith(fontSize: 14, color: Colors.black.withOpacity(0.8)),
+        style: subhead2.copyWith(
+            fontSize: 14, color: Colors.black.withOpacity(0.8)),
       ),
       actions: widget.actions,
     );
   }
 }
-

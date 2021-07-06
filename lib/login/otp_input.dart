@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiver/async.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/services/auth.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sebbo/widgets/custom_header_back.dart';
-import '../constants.dart';
+
 import 'loginScreen.dart';
 
 class OtpInput extends StatefulWidget {

@@ -5,13 +5,12 @@ import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/login/otp_input.dart';
 import 'package:sebbo/widgets/custom_app_logo.dart';
 import 'package:sebbo/widgets/custom_shape.dart';
 import 'package:sebbo/widgets/my_alert_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../constants.dart';
 
 String number, otp;
 String myNumber = ' ';

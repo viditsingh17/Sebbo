@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sebbo/configurations.dart';
+import 'package:sebbo/config/configurations.dart';
 import 'package:sebbo/models/product.dart';
-import 'package:sebbo/screens/add_photo.dart';
+import 'package:sebbo/models/userData.dart';
+import 'package:sebbo/screens/list_book_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
 import 'package:sebbo/widgets/custom_drawer.dart';
 import 'package:sebbo/widgets/product_item.dart';
@@ -108,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: _width > 350 ? 10 : 5,
             ),
             Text(
-              'Ghaziabad, UP',
+              currentUser.city + ', ' + currentUser.state,
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.white,
@@ -190,9 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: CustomDrawer(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-            return UploadBooks();
-          }));
+          Navigator.of(context).pushNamed(ListBook.listRoute);
         },
         label: Row(
           children: [
@@ -283,8 +282,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     width: _width > 350 ? 70 : 60,
                     height: _width > 350 ? 70 : 60,
-                    margin:
-                        EdgeInsets.symmetric(horizontal: _width > 350 ? 18 : 12),
+                    margin: EdgeInsets.symmetric(
+                        horizontal: _width > 350 ? 18 : 12),
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       // gradient:

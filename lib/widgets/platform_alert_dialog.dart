@@ -2,9 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:sebbo/constants.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/widgets/platform_widget.dart';
-
 
 class PlatformAlertDialog extends PlatformWidget {
   PlatformAlertDialog({
@@ -24,14 +23,14 @@ class PlatformAlertDialog extends PlatformWidget {
   Future<bool> show(BuildContext context) async {
     return Platform.isIOS
         ? await showCupertinoDialog<bool>(
-      context: context,
-      builder: (context) => this,
-    )
+            context: context,
+            builder: (context) => this,
+          )
         : await showDialog<bool>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => this,
-    );
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => this,
+          );
   }
 
   @override
@@ -75,7 +74,6 @@ class PlatformAlertDialog extends PlatformWidget {
   }
 }
 
-
 class PlatformAlertDialogAction extends PlatformWidget {
   PlatformAlertDialogAction({this.child, this.onPressed});
   final Widget child;
@@ -99,26 +97,27 @@ class PlatformAlertDialogAction extends PlatformWidget {
   }
 }
 
-
-class PlatformExceptionAlertDialog extends PlatformAlertDialog{
+class PlatformExceptionAlertDialog extends PlatformAlertDialog {
   PlatformExceptionAlertDialog({
     @required String title,
     @required PlatformException exception,
-  }):super(
-    title : title,
-    content : _message(exception),
-    defaultActionText : 'OK',
-  );
+  }) : super(
+          title: title,
+          content: _message(exception),
+          defaultActionText: 'OK',
+        );
 
   static String _message(PlatformException exception) {
     return _errors[exception.code] ?? exception.message;
   }
 
   static Map<String, String> _errors = {
-    'ERROR_INVALID_CREDENTIAL' : 'Invalid Credential either your Phone Number or OTP is wrong.',
-    'ERROR_USER_DISABLED' : 'User has been disabled. Try again after some time.',
-    'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL' : 'Account already exists with different credentials',
-    'ERROR_INVALID_ACTION_CODE' : 'Either phone number or OTP entered is incorrect.',
+    'ERROR_INVALID_CREDENTIAL':
+        'Invalid Credential either your Phone Number or OTP is wrong.',
+    'ERROR_USER_DISABLED': 'User has been disabled. Try again after some time.',
+    'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL':
+        'Account already exists with different credentials',
+    'ERROR_INVALID_ACTION_CODE':
+        'Either phone number or OTP entered is incorrect.',
   };
 }
-

@@ -3,7 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart' as f_s;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sebbo/constants.dart';
+import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/login/loginScreen.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/screens/home_screen.dart';
