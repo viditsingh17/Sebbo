@@ -179,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   InkWell(
                     onTap: () {
                       //This add the access to Razorpay gateway
-                      // _openCheckout();
+                      _openCheckout();
                     },
                     child: Container(
                       width: 65,
