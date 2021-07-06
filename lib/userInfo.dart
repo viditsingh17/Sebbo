@@ -46,6 +46,7 @@ class _UserInfoState extends State<UserInfo> {
   }
 
   editProfile(){
+    print(currentUser.name);
     firstNameController.text = currentUser.firstName;
     lastNameController.text = currentUser.lastName;
     emailController.text = currentUser.email;
@@ -90,7 +91,10 @@ class _UserInfoState extends State<UserInfo> {
       myNumber,
       countryController.text,
       stateController.text,
-      cityController.text
+      cityController.text,
+      "0",
+      "0",
+      "0"
     ];
     Provider.of<Data>(context,listen: false).changeMyData(myData);
     createUserFromList(myData);
@@ -104,7 +108,10 @@ class _UserInfoState extends State<UserInfo> {
       'country': countryController.text,
       'state': stateController.text,
       'city': cityController.text,
-      'pincode': pincodeController.text
+      'pincode': pincodeController.text,
+      'wallet':0,
+      'noOfBooks':0,
+      'sold':0
     });
     SharedPrefFunction().saveUserData(myNumber, myData);
     setState(() {
@@ -124,7 +131,10 @@ class _UserInfoState extends State<UserInfo> {
       currentUser.myNumber,
       countryController.text,
       stateController.text,
-      cityController.text
+      cityController.text,
+      currentUser.wallet.toString(),
+      currentUser.noOfBooks.toString(),
+      currentUser.sold.toString()
     ];
     Provider.of<Data>(context,listen: false).changeMyData(myData);
     createUserFromList(myData);
@@ -139,6 +149,9 @@ class _UserInfoState extends State<UserInfo> {
       'state': stateController.text,
       'city': cityController.text,
       'pincode': pincodeController.text,
+      'wallet':currentUser.wallet,
+      'noOfBooks':currentUser.noOfBooks,
+      'sold':currentUser.sold
     });
     try{
       SnackBar snackBar = SnackBar(

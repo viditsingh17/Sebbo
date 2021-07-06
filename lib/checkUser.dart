@@ -8,8 +8,6 @@ import 'package:sebbo/login/loginScreen.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
 import 'package:sebbo/screens/home_screen.dart';
 import 'package:sebbo/userInfo.dart';
-import 'package:sebbo/widgets/custom_app_logo.dart';
-
 import 'package:sebbo/widgets/my_alert_dialog.dart';
 
 import 'loading/progress.dart';
@@ -146,16 +144,11 @@ class _CheckUserState extends State<CheckUser> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Welcome',
+                      Text('Welcome Back',
                           style: heading1.copyWith(
                               fontSize: 38, color: Colors.white)),
                       Text(
-                        'Mate 🙂',
-                        style: heading1.copyWith(
-                            fontSize: 38, color: Colors.white),
-                      ),
-                      Text(
-                        currentUser.firstName,
+                        currentUser.firstName + '🙂',
                         style: GoogleFonts.raleway(
                             fontSize: 38,
                             fontWeight: FontWeight.w300,
@@ -287,7 +280,7 @@ class _CheckUserState extends State<CheckUser> {
                           style: heading1.copyWith(
                               fontSize: 38, color: Colors.white)),
                       Text(
-                        'Mate 🙂',
+                        'Let\'s dive in. 🙂',
                         style: GoogleFonts.raleway(
                             fontSize: 38,
                             fontWeight: FontWeight.w300,
