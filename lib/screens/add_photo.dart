@@ -41,8 +41,21 @@ class _UploadBooksState extends State<UploadBooks> {
       maxWidth: 960,
     );
     setState(() {
-      //TODO ADD IF ELSE
-      title == 'first' ? this.first = file : this.second = file;
+      if(title == 'first'){
+        this.first = file;
+      }
+      else if(title == 'second'){
+        this.second = file;
+      }
+      else if(title == 'third'){
+        this.third = file;
+      }
+      else if(title == 'fourth'){
+        this.fourth = file;
+      }
+      else if(title == 'fifth'){
+        this.fifth = file;
+      }
     });
   }
 
@@ -51,8 +64,21 @@ class _UploadBooksState extends State<UploadBooks> {
     PickedFile file =
     await _picker.getImage(source: ImageSource.gallery);
     setState(() {
-      //TODO SAME 44
-      title == 'first' ? this.first = file : this.second = file;
+      if(title == 'first'){
+        this.first = file;
+      }
+      else if(title == 'second'){
+        this.second = file;
+      }
+      else if(title == 'third'){
+        this.third = file;
+      }
+      else if(title == 'fourth'){
+        this.fourth = file;
+      }
+      else if(title == 'fifth'){
+        this.fifth = file;
+      }
     });
   }
 
