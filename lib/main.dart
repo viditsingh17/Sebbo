@@ -24,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sebbo/screens/list_book_screen.dart';
+import 'package:sebbo/screens/product_view_screen.dart';
 import 'package:sebbo/screens/profile_screen.dart';
 import 'package:sebbo/screens/search_screen.dart';
 
@@ -144,6 +145,7 @@ class _MyAppState extends State<MyApp> {
           SearchScreen.searchRoute: (ctx) => SearchScreen(),
           ProfileScreen.profileRoute: (ctx) => ProfileScreen(),
           ListBook.listRoute: (ctx) => ListBook(),
+          ProductView.productViewRoute: (ctx) => ProductView(),
         },
       );
     });

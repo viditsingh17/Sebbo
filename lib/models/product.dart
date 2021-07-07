@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:sebbo/models/userData.dart';
 
 class Product {
   final String id;
@@ -7,7 +8,7 @@ class Product {
   final double price;
   final String imageUrl;
   final List<String> moreImagesUrl;
-  final owner;
+  final UserData owner;
   final DateTime listedOn;
 
   Product({

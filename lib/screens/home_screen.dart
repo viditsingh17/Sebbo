@@ -14,75 +14,90 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var _selectedCategory = 0;
-  final _suggestedProducts = <Product>[
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-    Product(
-        id: 'a1',
-        description:
-            'lorem fnalkdasdmm amdoamdoimo dmoamd in nfnaisnjfn indfa nafn ;aofj oifmoa noan oan nonoanfaoen oanbfoanfeon onoanwedmnajmn mnamnsdoamodmaomda ndaod o',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind having all the knowledge required'),
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-    Product(
-        id: 'a1',
-        description: 'bal lla flaslfla f',
-        price: 299,
-        imageUrl: 'https://picsum.photos/200',
-        listedOn: DateTime.now(),
-        owner: 'Rakesh Roshan',
-        title: 'First book of mankind'),
-  ];
+
   @override
   Widget build(BuildContext context) {
+    //DUMMY DATA USED
+    UserData _dummyUser = UserData(
+        city: 'Delhi',
+        state: 'Delhi',
+        firstName: 'Ramesh',
+        country: 'India',
+        email: 'rameshkumar@gmail.com',
+        lastName: 'Kumar',
+        noOfBooks: 1,
+        pincode: '560056',
+        sold: 0,
+        wallet: 99,
+        myNumber: '8282828282');
+    final _suggestedProducts = <Product>[
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+      Product(
+          id: 'a1',
+          description:
+              'lorem fnalkdasdmm amdoamdoimo dmoamd in nfnaisnjfn indfa nafn ;aofj oifmoa noan oan nonoanfaoen oanbfoanfeon onoanwedmnajmn mnamnsdoamodmaomda ndaod o',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind having all the knowledge required'),
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+      Product(
+          id: 'a1',
+          description: 'bal lla flaslfla f',
+          price: 299,
+          imageUrl: 'https://picsum.photos/200',
+          listedOn: DateTime.now(),
+          owner: _dummyUser,
+          title: 'First book of mankind'),
+    ];
+
     //design specific variables
     final size = MediaQuery.of(context).size;
     final _width = size.width;
