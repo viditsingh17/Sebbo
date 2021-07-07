@@ -38,6 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200'
+          ],
           title: 'First book of mankind'),
       Product(
           id: 'a1',
@@ -47,6 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200'
+          ],
           title: 'First book of mankind having all the knowledge required'),
       Product(
           id: 'a1',
@@ -55,6 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200'
+          ],
           title: 'First book of mankind'),
       Product(
           id: 'a1',
@@ -63,6 +81,12 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200'
+          ],
           title: 'First book of mankind'),
       Product(
           id: 'a1',
@@ -71,6 +95,12 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/800',
+            'https://picsum.photos/800',
+            'https://picsum.photos/800',
+            'https://picsum.photos/800'
+          ],
           title: 'First book of mankind'),
       Product(
           id: 'a1',
@@ -79,6 +109,12 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/800',
+            'https://picsum.photos/800',
+            'https://picsum.photos/800',
+            'https://picsum.photos/800'
+          ],
           title: 'First book of mankind'),
       Product(
           id: 'a1',
@@ -87,14 +123,26 @@ class _HomeScreenState extends State<HomeScreen> {
           imageUrl: 'https://picsum.photos/200',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200',
+            'https://picsum.photos/200'
+          ],
           title: 'First book of mankind'),
       Product(
           id: 'a1',
           description: 'bal lla flaslfla f',
           price: 299,
-          imageUrl: 'https://picsum.photos/200',
+          imageUrl: 'https://picsum.photos/800',
           listedOn: DateTime.now(),
           owner: _dummyUser,
+          moreImagesUrl: [
+            'https://picsum.photos/800',
+            'https://picsum.photos/800',
+            'https://picsum.photos/800',
+            'https://picsum.photos/800'
+          ],
           title: 'First book of mankind'),
     ];
 

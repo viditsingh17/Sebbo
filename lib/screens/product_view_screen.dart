@@ -3,6 +3,7 @@ import 'package:sebbo/config/constants.dart';
 import 'package:sebbo/models/product.dart';
 import 'package:intl/intl.dart';
 import 'package:sebbo/widgets/custom_header_back.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ProductView extends StatefulWidget {
   static const String productViewRoute = '/home/product/productView';
@@ -11,11 +12,66 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
+  Widget _buildSellerBox(name, date) {
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey[200],
+          ),
+          margin: const EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: CircleAvatar(
+                      minRadius: 14,
+                      backgroundImage:
+                          AssetImage('./assets/images/default.png'),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                        ),
+                      ),
+                      Text(
+                        DateFormat.yMMMd().format(date),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context).settings.arguments as ProductViewArguments;
     bool addedToCart = args.addedToCart;
+    var images = [];
+    images.add(args.product.imageUrl);
+    images += args.product.moreImagesUrl;
     return Scaffold(
       body: ListView(
         shrinkWrap: false,
@@ -28,9 +84,26 @@ class _ProductViewState extends State<ProductView> {
           ),
           Container(
             width: double.infinity,
-            child: Image.network(
-              args.product.imageUrl,
-              fit: BoxFit.cover,
+            child: CarouselSlider(
+              options: CarouselOptions(
+                aspectRatio: 1,
+                viewportFraction: 0.8,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 10),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                scrollDirection: Axis.horizontal,
+              ),
+              items: images.map((i) {
+                return Image.network(
+                  i,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.fitHeight,
+                );
+              }).toList(),
             ),
           ),
           SizedBox(
@@ -83,44 +156,6 @@ class _ProductViewState extends State<ProductView> {
           SizedBox(
             height: 10,
           ),
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[200],
-                ),
-                margin: const EdgeInsets.only(left: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        CircleAvatar(),
-                        Text(
-                          args.product.owner.name,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      DateFormat.yMMMd().format(args.product.listedOn),
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
           SizedBox(
             height: 10,
           ),
@@ -148,7 +183,11 @@ class _ProductViewState extends State<ProductView> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
+          ),
+          _buildSellerBox(args.product.owner.name, args.product.listedOn),
+          SizedBox(
+            height: 30,
           ),
           myRaisedButton(
             label: 'Contact seller',
