@@ -56,8 +56,8 @@ class _SearchScreenState extends State<SearchScreen> {
         noOfBooks: 1,
         pincode: '560056',
         sold: 0,
-        wallet: 99,
         myNumber: '8282828282');
+    _dummyUser.setWalletBalance(99);
     final resultProducts = <Product>[
       Product(
           id: 'a1',

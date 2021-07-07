@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //first name only
     final String _numberOfBooksListed = currentUser.noOfBooks.toString();
     final String _numberOfBooksSold = currentUser.sold.toString();
-    final String _credits = currentUser.wallet.toString();
+    final String _credits = currentUser.getWalletBalance().toString();
     return Scaffold(
       body: ListView(
         shrinkWrap: true,

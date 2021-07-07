@@ -27,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
         lastName: 'Kumar',
         noOfBooks: 1,
         pincode: '560056',
+        name: 'Ramesh Kumar',
         sold: 0,
-        wallet: 99,
         myNumber: '8282828282');
     final _suggestedProducts = <Product>[
       Product(
@@ -215,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: _width > 350 ? 5 : 1,
             ),
             Text(
-              'Add a book',
+              'Add book',
               style: TextStyle(
                 fontSize: _width > 350 ? 16 : 12,
               ),

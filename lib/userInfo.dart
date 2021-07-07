@@ -129,7 +129,7 @@ class _UserInfoState extends State<UserInfo> {
       countryController.text,
       stateController.text,
       cityController.text,
-      currentUser.wallet.toString(),
+      currentUser.getWalletBalance().toString(),
       currentUser.noOfBooks.toString(),
       currentUser.sold.toString()
     ];
@@ -146,7 +146,7 @@ class _UserInfoState extends State<UserInfo> {
       'state': stateController.text,
       'city': cityController.text,
       'pincode': pincodeController.text,
-      'wallet': currentUser.wallet,
+      'wallet': currentUser.getWalletBalance(),
       'noOfBooks': currentUser.noOfBooks,
       'sold': currentUser.sold
     });

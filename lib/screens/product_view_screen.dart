@@ -83,20 +83,43 @@ class _ProductViewState extends State<ProductView> {
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Text(
-              DateFormat.yMMMd().format(args.product.listedOn),
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[200],
+                ),
+                margin: const EdgeInsets.only(left: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(),
+                        Text(
+                          args.product.owner.name,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      DateFormat.yMMMd().format(args.product.listedOn),
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-          myRaisedButton(
-            label: 'Add to cart',
-            onPressed: () {},
+            ],
           ),
           SizedBox(
             height: 10,
@@ -128,7 +151,7 @@ class _ProductViewState extends State<ProductView> {
             height: 10,
           ),
           myRaisedButton(
-            label: 'Add to cart',
+            label: 'Contact seller',
             onPressed: () {},
           ),
           SizedBox(

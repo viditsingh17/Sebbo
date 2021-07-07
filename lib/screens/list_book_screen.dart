@@ -202,7 +202,7 @@ class _ListBookState extends State<ListBook> {
       currentUser.country,
       currentUser.state,
       currentUser.city,
-      currentUser.wallet.toString(),
+      currentUser.getWalletBalance().toString(),
       (currentUser.noOfBooks + 1).toString(),
       currentUser.sold.toString()
     ];
