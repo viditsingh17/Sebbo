@@ -66,6 +66,7 @@ class _ProductViewState extends State<ProductView> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     final args =
         ModalRoute.of(context).settings.arguments as ProductViewArguments;
     bool addedToCart = args.addedToCart;
@@ -114,7 +115,7 @@ class _ProductViewState extends State<ProductView> {
             child: Text(
               args.product.title,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: width > 350 ? 30 : 20,
                 color: Colors.black87,
                 fontWeight: FontWeight.bold,
               ),
@@ -136,7 +137,7 @@ class _ProductViewState extends State<ProductView> {
                     Text(
                       '\u20B9' + args.product.price.toStringAsFixed(2),
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: width > 350 ? 30 : 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),

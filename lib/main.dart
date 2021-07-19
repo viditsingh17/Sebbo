@@ -23,6 +23,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:sebbo/screens/add_image_screen_1.dart';
+import 'package:sebbo/screens/add_image_screen_2.dart';
+import 'package:sebbo/screens/add_image_screen_3.dart';
+import 'package:sebbo/screens/add_image_screen_4.dart';
 import 'package:sebbo/screens/list_book_screen.dart';
 import 'package:sebbo/screens/product_view_screen.dart';
 import 'package:sebbo/screens/profile_screen.dart';
@@ -146,6 +150,10 @@ class _MyAppState extends State<MyApp> {
           ProfileScreen.profileRoute: (ctx) => ProfileScreen(),
           ListBook.listRoute: (ctx) => ListBook(),
           ProductView.productViewRoute: (ctx) => ProductView(),
+          AddImage1.addImage1Route: (ctx) => AddImage1(),
+          AddImage2.addImage2Route: (ctx) => AddImage2(),
+          AddImage3.addImage3Route: (ctx) => AddImage3(),
+          AddImage4.addImage4Route: (ctx) => AddImage4(),
         },
       );
     });

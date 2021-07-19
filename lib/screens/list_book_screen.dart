@@ -9,6 +9,7 @@ import 'package:sebbo/imageHandler/imageHandler.dart';
 import 'package:sebbo/loading/progress.dart';
 import 'package:sebbo/models/userData.dart';
 import 'package:sebbo/saveDataLocally/sharedPrefFunctions.dart';
+import 'package:sebbo/screens/add_image_screen_1.dart';
 import 'package:sebbo/widgets/custom_header_back.dart';
 
 final bookRef = FirebaseFirestore.instance.collection('books');
@@ -24,7 +25,7 @@ class _ListBookState extends State<ListBook> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String name, author;
   int mrp;
-  PickedFile first, second, third, fourth, fifth;
+  // PickedFile first, second, third, fourth, fifth;
   bool isLoading = false;
   final ImagePicker _picker = ImagePicker();
 
@@ -36,117 +37,117 @@ class _ListBookState extends State<ListBook> {
       maxHeight: 675,
       maxWidth: 960,
     );
-    setState(() {
-      if (title == 'first') {
-        this.first = file;
-      } else if (title == 'second') {
-        this.second = file;
-      } else if (title == 'third') {
-        this.third = file;
-      } else if (title == 'fourth') {
-        this.fourth = file;
-      } else if (title == 'fifth') {
-        this.fifth = file;
-      }
-    });
+    // setState(() {
+    //   if (title == 'first') {
+    //     this.first = file;
+    //   } else if (title == 'second') {
+    //     this.second = file;
+    //   } else if (title == 'third') {
+    //     this.third = file;
+    //   } else if (title == 'fourth') {
+    //     this.fourth = file;
+    //   } else if (title == 'fifth') {
+    //     this.fifth = file;
+    //   }
+    // });
   }
 
-  handleChooseFromGallery(String title) async {
-    Navigator.pop(context);
-    PickedFile file = await _picker.getImage(source: ImageSource.gallery);
-    setState(() {
-      if (title == 'first') {
-        this.first = file;
-      } else if (title == 'second') {
-        this.second = file;
-      } else if (title == 'third') {
-        this.third = file;
-      } else if (title == 'fourth') {
-        this.fourth = file;
-      } else if (title == 'fifth') {
-        this.fifth = file;
-      }
-    });
-  }
+  // handleChooseFromGallery(String title) async {
+  //   Navigator.pop(context);
+  //   PickedFile file = await _picker.getImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     if (title == 'first') {
+  //       this.first = file;
+  //     } else if (title == 'second') {
+  //       this.second = file;
+  //     } else if (title == 'third') {
+  //       this.third = file;
+  //     } else if (title == 'fourth') {
+  //       this.fourth = file;
+  //     } else if (title == 'fifth') {
+  //       this.fifth = file;
+  //     }
+  //   });
+  // }
 
-  selectImage(parentContext, String title) {
-    return showDialog(
-      context: parentContext,
-      builder: (context) {
-        return SimpleDialog(
-          elevation: 50,
-          backgroundColor: Colors.white,
-          //contentPadding: EdgeInsets.all(20.0),
-          titlePadding: EdgeInsets.all(20),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          title: Center(
-            child: Text(
-              'Add Picture',
-              style: heading2,
-            ),
-          ),
-          children: <Widget>[
-            SimpleDialogOption(
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.camera_alt,
-                    color: Colors.black54,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'From Camera',
-                    style: subhead2,
-                  ),
-                ],
-              ),
-              onPressed: () {
-                handleTakePhoto(title);
-              },
-            ),
-            SimpleDialogOption(
-              onPressed: () {
-                handleChooseFromGallery(title);
-              },
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.image,
-                    color: Colors.black54,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'From Gallery',
-                    style: subhead2,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 30,
-              alignment: Alignment.center,
-              child: GestureDetector(
-                child: Text(
-                  'Cancel',
-                  style: subhead2.copyWith(
-                    fontSize: 14,
-                    color: themeColor,
-                  ),
-                ),
-                onTap: () => Navigator.pop(context),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // selectImage(parentContext, String title) {
+  //   return showDialog(
+  //     context: parentContext,
+  //     builder: (context) {
+  //       return SimpleDialog(
+  //         elevation: 50,
+  //         backgroundColor: Colors.white,
+  //         //contentPadding: EdgeInsets.all(20.0),
+  //         titlePadding: EdgeInsets.all(20),
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //         ),
+  //         title: Center(
+  //           child: Text(
+  //             'Add Picture',
+  //             style: heading2,
+  //           ),
+  //         ),
+  //         children: <Widget>[
+  //           SimpleDialogOption(
+  //             child: Row(
+  //               children: <Widget>[
+  //                 Icon(
+  //                   Icons.camera_alt,
+  //                   color: Colors.black54,
+  //                 ),
+  //                 SizedBox(
+  //                   width: 10.0,
+  //                 ),
+  //                 Text(
+  //                   'From Camera',
+  //                   style: subhead2,
+  //                 ),
+  //               ],
+  //             ),
+  //             onPressed: () {
+  //               handleTakePhoto(title);
+  //             },
+  //           ),
+  //           SimpleDialogOption(
+  //             onPressed: () {
+  //               handleChooseFromGallery(title);
+  //             },
+  //             child: Row(
+  //               children: <Widget>[
+  //                 Icon(
+  //                   Icons.image,
+  //                   color: Colors.black54,
+  //                 ),
+  //                 SizedBox(
+  //                   width: 10.0,
+  //                 ),
+  //                 Text(
+  //                   'From Gallery',
+  //                   style: subhead2,
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //           Container(
+  //             height: 30,
+  //             alignment: Alignment.center,
+  //             child: GestureDetector(
+  //               child: Text(
+  //                 'Cancel',
+  //                 style: subhead2.copyWith(
+  //                   fontSize: 14,
+  //                   color: themeColor,
+  //                 ),
+  //               ),
+  //               onTap: () => Navigator.pop(context),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   createFirebase() async {
     String firstUrl = ' ';
@@ -157,27 +158,27 @@ class _ListBookState extends State<ListBook> {
     setState(() {
       isLoading = true;
     });
-    if (first != null) {
-      firstUrl = await ImageHandler()
-          .handleImage(first, name, 'first', currentUser.myNumber);
+    // if (first != null) {
+    //   firstUrl = await ImageHandler()
+    //       .handleImage(first, name, 'first', currentUser.myNumber);
 
-      if (second != null) {
-        secondUrl = await ImageHandler()
-            .handleImage(second, name, 'second', currentUser.myNumber);
-      }
-      if (third != null) {
-        secondUrl = await ImageHandler()
-            .handleImage(third, name, 'third', currentUser.myNumber);
-      }
-      if (fourth != null) {
-        secondUrl = await ImageHandler()
-            .handleImage(fourth, name, 'fourth', currentUser.myNumber);
-      }
-      if (fifth != null) {
-        secondUrl = await ImageHandler()
-            .handleImage(fifth, name, 'fifth', currentUser.myNumber);
-      }
-    }
+    //   if (second != null) {
+    //     secondUrl = await ImageHandler()
+    //         .handleImage(second, name, 'second', currentUser.myNumber);
+    //   }
+    //   if (third != null) {
+    //     secondUrl = await ImageHandler()
+    //         .handleImage(third, name, 'third', currentUser.myNumber);
+    //   }
+    //   if (fourth != null) {
+    //     secondUrl = await ImageHandler()
+    //         .handleImage(fourth, name, 'fourth', currentUser.myNumber);
+    //   }
+    //   if (fifth != null) {
+    //     secondUrl = await ImageHandler()
+    //         .handleImage(fifth, name, 'fifth', currentUser.myNumber);
+    //   }
+    // }
 
     DocumentReference docRef =
         bookRef.doc(currentUser.myNumber).collection('books').doc(name);
@@ -325,109 +326,109 @@ class _ListBookState extends State<ListBook> {
     );
   }
 
-  Widget _buildBookImage() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // First page
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              'Add front page of the book',
-              style: subhead2.copyWith(fontSize: 14),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              selectImage(context, 'first');
-            },
-            child: _buildImageStack(
-                imageObject: first,
-                placeholderPath: 'assets/images/placeholders/1.png'),
-          ),
-          // Second page
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              'Add last page of the book',
-              style: subhead2.copyWith(fontSize: 14),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              selectImage(context, 'second');
-            },
-            child: _buildImageStack(
-                imageObject: second,
-                placeholderPath: 'assets/images/placeholders/2.png'),
-          ),
+  // Widget _buildBookImage() {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(20.0),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         // First page
+  //         Padding(
+  //           padding: const EdgeInsets.all(10.0),
+  //           child: Text(
+  //             'Add front page of the book',
+  //             style: subhead2.copyWith(fontSize: 14),
+  //           ),
+  //         ),
+  //         GestureDetector(
+  //           onTap: () {
+  //             selectImage(context, 'first');
+  //           },
+  //           child: _buildImageStack(
+  //               imageObject: first,
+  //               placeholderPath: 'assets/images/placeholders/1.png'),
+  //         ),
+  //         // Second page
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.all(10.0),
+  //           child: Text(
+  //             'Add last page of the book',
+  //             style: subhead2.copyWith(fontSize: 14),
+  //           ),
+  //         ),
+  //         GestureDetector(
+  //           onTap: () {
+  //             selectImage(context, 'second');
+  //           },
+  //           child: _buildImageStack(
+  //               imageObject: second,
+  //               placeholderPath: 'assets/images/placeholders/2.png'),
+  //         ),
 
-          // Third image
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              'Add the bar-code on the book',
-              style: subhead2.copyWith(fontSize: 14),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              selectImage(context, 'third');
-            },
-            child: _buildImageStack(
-                imageObject: third,
-                placeholderPath: 'assets/images/placeholders/3.png'),
-          ),
-          // Fourth image
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              'Add the price tag on the book',
-              style: subhead2.copyWith(fontSize: 14),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              selectImage(context, 'fourth');
-            },
-            child: _buildImageStack(
-                imageObject: fourth,
-                placeholderPath: 'assets/images/placeholders/4.png'),
-          ),
-          // Fifth Image
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              'Add a rangom page within the book',
-              style: subhead2.copyWith(fontSize: 14),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              selectImage(context, 'fifth');
-            },
-            child: _buildImageStack(
-                imageObject: fifth,
-                placeholderPath: 'assets/images/placeholders/5.png'),
-          ),
-        ],
-      ),
-    );
-  }
+  //         // Third image
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.all(10.0),
+  //           child: Text(
+  //             'Add the bar-code on the book',
+  //             style: subhead2.copyWith(fontSize: 14),
+  //           ),
+  //         ),
+  //         GestureDetector(
+  //           onTap: () {
+  //             selectImage(context, 'third');
+  //           },
+  //           child: _buildImageStack(
+  //               imageObject: third,
+  //               placeholderPath: 'assets/images/placeholders/3.png'),
+  //         ),
+  //         // Fourth image
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.all(10.0),
+  //           child: Text(
+  //             'Add the price tag on the book',
+  //             style: subhead2.copyWith(fontSize: 14),
+  //           ),
+  //         ),
+  //         GestureDetector(
+  //           onTap: () {
+  //             selectImage(context, 'fourth');
+  //           },
+  //           child: _buildImageStack(
+  //               imageObject: fourth,
+  //               placeholderPath: 'assets/images/placeholders/4.png'),
+  //         ),
+  //         // Fifth Image
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Padding(
+  //           padding: const EdgeInsets.all(10.0),
+  //           child: Text(
+  //             'Add a rangom page within the book',
+  //             style: subhead2.copyWith(fontSize: 14),
+  //           ),
+  //         ),
+  //         GestureDetector(
+  //           onTap: () {
+  //             selectImage(context, 'fifth');
+  //           },
+  //           child: _buildImageStack(
+  //               imageObject: fifth,
+  //               placeholderPath: 'assets/images/placeholders/5.png'),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -449,18 +450,8 @@ class _ListBookState extends State<ListBook> {
                   _buildName(),
                   _buildMRP(),
                   _buildDescription(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 20),
-                    child: Text(
-                      'Add Images',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  _buildBookImage(),
+
+                  // _buildBookImage(),
                   // Padding(
                   //   padding: const EdgeInsets.all(10.0),
                   //   child: Text(
@@ -470,17 +461,16 @@ class _ListBookState extends State<ListBook> {
                   // ),
 
                   //-------End of form-------
-                  SizedBox(
-                    height: 30,
-                  ),
                   myRaisedButton(
                     label: 'Next',
                     onPressed: () {
                       if (!_formKey.currentState.validate()) {
                         return;
                       }
-                      _formKey.currentState.save();
-                      createFirebase();
+                      // _formKey.currentState.save();
+                      //TODO: I've removed the firebase function, please handle it
+                      // createFirebase();
+                      Navigator.of(context).pushNamed(AddImage1.addImage1Route);
                     },
                   ),
                 ],
